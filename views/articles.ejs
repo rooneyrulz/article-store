@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style/article.css">
+    <title>Node App</title>
+</head>
+
+<body>
+    <header id="main-header" class="header-container">
+        <nav id="navbar" class="navbar navbar-dark navbar-expand-lg">
+            <div class="container-fluid">
+                <a href="/home" class="navbar-brand">
+                    <span class="brand-b">Article</span> Store
+                </a>
+                <button type="button" id="btn-menu" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#menu-collapse" aria-hidden="false">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menu-collapse">
+                    <ul class="nav navbar-nav ml-lg-5">
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                                <span class="sr-only">(current)</span> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/article/add" class="nav-link">
+                            Add article
+                            </a>
+                        </li>
+                        <li class="nav-item active active-nav">
+                            <a href="/article" class="nav-link">Articles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/about" class="nav-link">
+                            About
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            Signup
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            Login
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section id="section-jumbotron" class="jumbotron jumbotron-2 text-left bg-dark text-light">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-6 col-xs-12">
+                        <h1 class="display-5 text-light text-capitalize">
+                            <%= message %>
+                        </h1>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <form id="form-search" class="form-inline mt-2">
+                            <div class="form-group mb-0">
+                                <input id="search-author" type="text" class="form-control ml-sm-1 mt-1 border-0" placeholder="Search By Author.." required>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-success mt-1 ml-1">SEARCH</button>
+                        </form>
+                    </div>
+                </div>
+                <hr><br>
+                <div id="articles" class="container">
+                    <% articles.forEach((article) => { %>
+                        <ul class="list-group bg-dark">
+                            <li class="list-group-item text-light bg-dark">
+                                <strong class="">
+                                    Title:
+                                </strong>
+                                <span class="">
+                                    <%= article.title %>
+                                </span>
+                            </li>
+                            <li class="list-group-item text-light bg-dark">
+                                <strong class="">
+                                    Author:
+                                </strong>
+                                <span class="">
+                                    <%= article.author %>
+                                </span>
+                            </li>
+                            <li class="list-group-item text-light bg-dark">
+                                <strong class="">
+                                    Message:
+                                </strong>
+                                <span class="">
+                                    <%= article.message %>
+                                </span>
+                            </li>
+                            <li class="list-group-item bg-dark text-sm-right btn-li">
+                                <a href="/article/<%= article._id %>" class="btn btn-small text-uppercase">View Article</a>
+                            </li>
+                        </ul><br>
+                        <% }) %>
+                </div>
+            </div>
+        </section>
+    </header>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>

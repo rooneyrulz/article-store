@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style/add_article.css">
+    <title>Node App</title>
+</head>
+
+<body class="bg-dark">
+    <header id="main-header" class="header-container">
+        <nav id="navbar" class="navbar navbar-dark navbar-expand-lg">
+            <div class="container-fluid">
+                <a href="/home" class="navbar-brand">
+                    <span class="brand-b">Article</span> Store
+                </a>
+                <button type="button" id="btn-menu" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#menu-collapse" aria-hidden="false">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menu-collapse">
+                    <ul class="nav navbar-nav ml-lg-5">
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">
+                                <span class="sr-only">(current)</span> Home
+                            </a>
+                        </li>
+                        <li class="nav-item active active-nav">
+                            <a href="/article/add" class="nav-link">
+                            Add article
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/article" class="nav-link">Articles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/about" class="nav-link">
+                            About
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            Signup
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">
+                            Login
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section id="section-jumbotron" class="jumbotron text-left bg-dark text-light">
+            <div class="container mt-5">
+                <h1 class="display-5 text-light text-capitalize">
+                    <%= message %>
+                </h1>
+                <section id="section-form">
+                    <div class="container">
+                        <form id="form-addArticle">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input id="title" name="title" type="text" class="form-control" placeholder="Title">
+                                <div class="text-right">
+                                    <small class="text-danger" id="title-validate"></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input id="author" name="author" type="text" class="form-control" placeholder="Author">
+                                <div class="text-right">
+                                    <small class="text-danger" id="author-validate"></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <input id="message" name="message" type="text" class="form-control" placeholder="Message">
+                                <div class="text-right">
+                                    <small class="text-danger" id="message-validate"></small>
+                                </div>
+                            </div>
+                            <button id="submit-article" type="submit" class="btn btn-dark">ADD ARTICLE</button>
+                            <div class="text-right">
+                                <strong class="text-success" id="form-validate"></strong>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </header>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+
+</html>
