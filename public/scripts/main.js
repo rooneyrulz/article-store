@@ -47,6 +47,7 @@ $(document).ready(() => {
                     $('#message').val("");
 
                     let validateText = `Article successfully saved!`;
+                    validateForm.addClass("alert alert-success mt-1");
                     validateForm.html(validateText).fadeIn(1000).fadeOut(7000);
                 },
                 error: (err) => {
@@ -75,7 +76,7 @@ $(document).ready(() => {
                 }
             });
         } else {
-            window.location.href = '/article';
+            window.location.href = '/article/' + id;
         }
     });
 
@@ -96,6 +97,7 @@ $(document).ready(() => {
                 window.location.href = '/article/' + article._id;
             },
             error: (err) => {
+                alert(`Article not found!`);
                 console.log(err);
             }
         });
@@ -153,6 +155,7 @@ $(document).ready(() => {
                     $('#message-p').val("");
 
                     let validateText = `Article successfully updated!`;
+                    validateForm.addClass('alert alert-success');
                     validateForm.html(validateText).fadeIn(1000).fadeOut(5000);
                 },
                 error: (err) => {
@@ -160,5 +163,91 @@ $(document).ready(() => {
                 }
             });
         }
+    });
+
+
+    //Sending post request to signup users
+    $('#user-signup').on('submit', (e) => {
+        console.log(e.target.id);
+        e.preventDefault();
+
+        const name = $('#name').val();
+        const email = $('#email').val();
+        const username = $('#username').val();
+        const password = $('#password').val();
+        const password2 = $('#password2').val();
+        const validateForm = $('#form-validate');
+        const validateName = $('#name-validate');
+        const validateEmail = $('#email-validate');
+        const validateUsername = $('#username-validate');
+        const validatePassword = $('#password-validate');
+        const validatePassword2 = $('#password2-validate');
+
+        if (name === "") {
+            let validateText = `Name is not valid!`;
+            validateName.html(validateText).fadeIn(1000);
+        }
+        if (email === "") {
+            let validateText = `Email is not valid!`;
+            validateEmail.html(validateText).fadeIn(1000);
+        }
+        if (username === "") {
+            let validateText = `Username is not valid!`;
+            validateUsername.html(validateText).fadeIn(1000);
+        }
+        if (password === "") {
+            let validateText = `Password is not valid!`;
+            validatePassword.html(validateText).fadeIn(1000);
+        }
+        if (password !== password2) {
+            let validateText = `Password is not match!`;
+            validatePassword2.html(validateText).fadeIn(1000);
+        }
+        if (name !== "") {
+            validateName.fadeOut(1000);
+        }
+        if (email !== "") {
+            validateEmail.fadeOut(1000);
+        }
+        if (username !== "") {
+            validateUsername.fadeOut(1000);
+        }
+        if (password !== "") {
+            validatePassword.fadeOut(1000);
+        }
+        if (password === password2) {
+            validatePassword2.fadeOut(1000);
+        }
+        if (name !== "" && email !== "" && username !== "" && password !== "" && password === password2) {
+            $.ajax({
+                type: 'POST',
+                url: '/user/signup',
+                data: {
+                    name: name,
+                    email: email,
+                    username: username,
+                    password: password
+                },
+                success: (user) => {
+                    $('#name').val("");
+                    $('#email').val("");
+                    $('#username').val("");
+                    $('#password').val("");
+                    $('#password2').val("");
+
+                    let validateText = `User successfully saved!`;
+                    validateForm.addClass('alert alert-success');
+                    validateForm.html(validateText).fadeIn(1000).fadeOut(7000);
+                },
+                error: (err) => {
+                    console.log(err);
+                    let validateText = `Something went wrong try again later!`;
+                    validateForm.removeClass('text-success');
+                    validateForm.addClass('text-danger');
+                    validateForm.html(validateText).fadeIn(1000).fadeOut(7000);
+                }
+            });
+        }
+
     });
 });

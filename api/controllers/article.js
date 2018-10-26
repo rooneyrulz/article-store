@@ -109,7 +109,6 @@ exports.SearchByAuthor = (req, res, next) => {
             } else {
                 res.status(200).send(article);
                 console.log(article);
-                res.redirect('/article/' + article._id);
             }
         })
         .catch(err => {

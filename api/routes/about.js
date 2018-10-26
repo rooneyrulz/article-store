@@ -3,8 +3,10 @@ const router = express.Router();
 
 const aboutController = require('../controllers/about');
 
+const ensureAuthenticated = require('../authentication/auth');
+
 //Routes for about
-router.get('/', aboutController.RenderAbout);
+router.get('/', ensureAuthenticated, aboutController.RenderAbout);
 
 
 

@@ -28,10 +28,9 @@
                                 <span class="sr-only">(current)</span> Home
                             </a>
                         </li>
-                        <li class="nav-item active active-nav">
-                            <a href="/article/add" class="nav-link">
-                            Add article
-                            </a>
+                    <% if (user) {%>
+                        <li class="nav-item">
+                            <a href="/article/add" class="nav-link active active-nav">Add article</a>
                         </li>
                         <li class="nav-item">
                             <a href="/article" class="nav-link">Articles
@@ -39,21 +38,30 @@
                         </li>
                         <li class="nav-item">
                             <a href="/about" class="nav-link">
-                            About
-                        </a>
+                                About
+                            </a>
                         </li>
+                    <%}%>
                     </ul>
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#!" class="nav-link">
-                            Signup
-                        </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#!" class="nav-link">
-                            Login
-                        </a>
-                        </li>
+                        <% if (user) {%>
+                            <li class="nav-item">
+                                <a href="/user/logout" class="nav-link">
+                                    Logout
+                                </a>
+                            </li>
+                        <%} else {%>
+                            <li class="nav-item">
+                                <a href="/user/signup" class="nav-link">
+                                    Signup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/user/login" class="nav-link">
+                                    Login
+                                </a>
+                            </li>
+                        <%}%>
                     </ul>
                 </div>
             </div>
@@ -65,6 +73,7 @@
                 </h1>
                 <section id="section-form">
                     <div class="container">
+                        <div class="" id="form-validate"></div>
                         <form id="form-addArticle">
                             <div class="form-group">
                                 <label for="title">Title</label>
@@ -88,9 +97,6 @@
                                 </div>
                             </div>
                             <button id="submit-article" type="submit" class="btn btn-dark">ADD ARTICLE</button>
-                            <div class="text-right">
-                                <strong class="text-success" id="form-validate"></strong>
-                            </div>
                         </form>
                     </div>
                 </section>

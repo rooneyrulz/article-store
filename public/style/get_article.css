@@ -71,7 +71,6 @@ body {
 }
 
 #navbar ul li {
-    padding: 0 0.5em;
     display: block;
 }
 
@@ -119,5 +118,3 @@ body {
 #articles ul li {
     border: 1px rgb(145, 141, 141) solid;
 }
-
-#articles ul .btn-li {}

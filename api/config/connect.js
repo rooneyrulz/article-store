@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/store', {
     useNewUrlParser: true
 });
+mongoose.set('useCreateIndex', true);
+
+mongoose.Promise = global.Promise;
 let connection = mongoose.connection;
 
 //Check for errors

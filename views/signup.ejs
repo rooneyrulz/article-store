@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/style/article.css">
+    <link rel="stylesheet" href="/style/signup.css">
     <title>Node App</title>
 </head>
 
-<body>
+<body class="bg-dark">
     <header id="main-header" class="header-container">
         <nav id="navbar" class="navbar navbar-dark navbar-expand-lg">
             <div class="container-fluid">
@@ -35,7 +35,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/article" class="nav-link active active-nav">Articles
+                                <a href="/article" class="nav-link">Articles
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -53,7 +53,7 @@
                                 </a>
                             </li>
                             <%} else {%>
-                                <li class="nav-item">
+                                <li class="nav-item active active-nav">
                                     <a href="/user/signup" class="nav-link">
                                         Signup
                                     </a>
@@ -68,60 +68,58 @@
                 </div>
             </div>
         </nav>
-        <section id="section-jumbotron" class="jumbotron jumbotron-2 text-left bg-dark text-light">
+        <section id="section-jumbotron" class="jumbotron text-left bg-dark text-light">
             <div class="container mt-5">
-                <div class="row">
-                    <div class="col-lg-8 col-sm-6 col-xs-12">
-                        <h1 class="display-5 text-light text-capitalize">
-                            <%= message %>
-                        </h1>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-xs-12">
-                        <form id="form-search" class="form-inline mt-2">
-                            <div class="form-group mb-0">
-                                <input id="search-author" type="text" class="form-control ml-sm-1 mt-1 border-0" placeholder="Search By Author.." required>
+                <h1 class="display-5 text-light text-capitalize">
+                    <%= title %>
+                </h1><br>
+                <section>
+                    <div class="container">
+                        <div class="" id="form-validate"></div>
+                        <form id="user-signup" action="/user/signup" , method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="Enter name">
+                                <div class="text-right">
+                                    <small class="text-danger" id="name-validate"></small>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-success mt-1 ml-1">SEARCH</button>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="text" class="form-control" placeholder="Enter email">
+                                <div class="text-right">
+                                    <small class="text-danger" id="email-validate"></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input id="username" name="username" type="text" class="form-control" placeholder="Enter username">
+                                <div class="text-right">
+                                    <small class="text-danger" id="username-validate"></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" name="password" type="password" class="form-control" placeholder="Enter password">
+                                <div class="text-right">
+                                    <small class="text-danger" id="password-validate"></small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password2">Confirm Password</label>
+                                <input id="password2" name="password2" type="password" class="form-control" placeholder="Retype password">
+                                <div class="text-right">
+                                    <small class="text-danger" id="password2-validate"></small>
+                                </div>
+                            </div>
+                            <button id="user-submit" type="submit" class="btn btn-success">ADD USER</button>
                         </form>
                     </div>
-                </div>
-                <hr><br>
-                <div id="articles" class="container">
-                    <% articles.forEach((article) => { %>
-                        <ul class="list-group bg-dark">
-                            <li class="list-group-item text-light bg-dark">
-                                <strong class="">
-                                    Title:
-                                </strong>
-                                <span class="">
-                                    <%= article.title %>
-                                </span>
-                            </li>
-                            <li class="list-group-item text-light bg-dark">
-                                <strong class="">
-                                    Author:
-                                </strong>
-                                <span class="">
-                                    <%= article.author %>
-                                </span>
-                            </li>
-                            <li class="list-group-item text-light bg-dark">
-                                <strong class="">
-                                    Message:
-                                </strong>
-                                <span class="">
-                                    <%= article.message %>
-                                </span>
-                            </li>
-                            <li class="list-group-item bg-dark text-md-right btn-li">
-                                <a href="/article/<%= article._id %>" class="btn btn-small text-uppercase">View Article</a>
-                            </li>
-                        </ul><br>
-                        <% }) %>
-                </div>
+                </section>
             </div>
         </section>
     </header>
+
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/scripts/main.js"></script>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/login.css">
     <title>Node App</title>
 </head>
 
@@ -22,8 +22,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="menu-collapse">
-                    <ul class="nav navbar-nav nav-pills ml-lg-5">
-                        <li class="nav-item active active-nav">
+                    <ul class="nav navbar-nav ml-lg-5">
+                        <li class="nav-item">
                             <a href="/home" class="nav-link">
                                 <span class="sr-only">(current)</span> Home
                             </a>
@@ -35,7 +35,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="article" class="nav-link">Articles
+                                <a href="/article" class="nav-link">Articles
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -55,30 +55,58 @@
                             <%} else {%>
                                 <li class="nav-item">
                                     <a href="/user/signup" class="nav-link">
-                                        Signup
-                                    </a>
+                                    Signup
+                                </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active active-nav">
                                     <a href="/user/login" class="nav-link">
-                                        Login
-                                    </a>
+                                    Login
+                                </a>
                                 </li>
-                                <%}%>
+                            <%}%>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <section id="section-jumbotron" class="jumbotron text-left bg-dark">
+        <section id="section-jumbotron" class="jumbotron text-left bg-dark text-light">
             <div class="container mt-5">
-                <h1 class="display-4 text-light text-capitalize p-2"> Let's Store Your Articles & <br> Have Offers</h1>
-                <button id="btn-header" type="button" class="btn mt-2">LEARN MORE</button>
+                <h1 class="display-5 text-light text-capitalize">
+                    <%= title %>
+                </h1><br><br>
+                    <section>
+                        <div class="container">
+                            <%- messages('message', locals) %>
+                            <form id="user-login" action="/user/login" , method="POST">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input id="username" name="username" type="text" class="form-control" placeholder="Enter username">
+                                    <div class="text-right">
+                                        <small class="text-danger" id="username-validate"></small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Enter password">
+                                    <div class="text-right">
+                                        <small class="text-danger" id="password-validate"></small>
+                                    </div>
+                                </div>
+                                <button id="btn-login" type="submit" class="btn btn-success">LOGIN</button>
+                                <div class="text-right">
+                                    <strong class="text-success" id="form-validate"></strong>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
             </div>
         </section>
     </header>
+
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/script.js"></script>
+
 </body>
 
 </html>
