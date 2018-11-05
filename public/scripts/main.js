@@ -4,46 +4,35 @@ $(document).ready(() => {
         e.preventDefault();
 
         const title = $('#title').val();
-        const author = $('#author').val();
         const message = $('#message').val();
         const validateForm = $('#form-validate');
         const validateTitle = $('#title-validate');
-        const validateAuthor = $('#author-validate');
         const validateMessage = $('#message-validate');
 
         if (title === "") {
             let validateText = `Title is not valid!`;
             validateTitle.html(validateText).fadeIn(1000);
         }
-        if (author === "") {
-            let validateText = `Author is not valid!`;
-            validateAuthor.html(validateText).fadeIn(1000);
-        }
         if (message === "") {
-            let validateText = `Message is not valid!`;
+            let validateText = `Article is not valid!`;
             validateMessage.html(validateText).fadeIn(1000);
         }
         if (title !== "") {
             validateTitle.fadeOut(1000);
         }
-        if (author !== "") {
-            validateAuthor.fadeOut(1000);
-        }
         if (message !== "") {
             validateMessage.fadeOut(1000);
         }
-        if (title !== "" && author !== "" && message !== "") {
+        if (title !== "" && message !== "") {
             $.ajax({
                 type: 'POST',
                 url: '/article/add',
                 data: {
                     title: title,
-                    author: author,
                     message: message
                 },
                 success: (article) => {
                     $('#title').val("");
-                    $('#author').val("");
                     $('#message').val("");
 
                     let validateText = `Article successfully saved!`;
@@ -80,20 +69,21 @@ $(document).ready(() => {
         }
     });
 
+    
     //Sending post request for searching
     $('#form-search').on('submit', (e) => {
         e.preventDefault();
         //console.log(`Searching.....`);
-        const author = $('#search-author').val();
+        const title = $('#search-title').val();
 
         $.ajax({
             type: 'POST',
             url: '/article/search',
             data: {
-                author: author
+                title: title
             },
             success: (article) => {
-                //console.log(article);
+                console.log(article);
                 window.location.href = '/article/' + article._id;
             },
             error: (err) => {
@@ -102,6 +92,7 @@ $(document).ready(() => {
             }
         });
     });
+    
 
 
     //Sending post request for patching articles
@@ -109,36 +100,27 @@ $(document).ready(() => {
         e.preventDefault();
 
         const title = $('#title-p').val();
-        const author = $('#author-p').val();
         const message = $('#message-p').val();
         const showArticle = $('#show-article');
         const validateForm = $('#form-p-validate');
         const validateTitle = $('#title-p-validate');
-        const validateAuthor = $('#author-p-validate');
         const validateMessage = $('#message-p-validate');
 
         if (title === "") {
             let validateText = `Title is not valid!`;
             validateTitle.html(validateText).fadeIn(1000);
         }
-        if (author === "") {
-            let validateText = `Author is not valid!`;
-            validateAuthor.html(validateText).fadeIn(1000);
-        }
         if (message === "") {
-            let validateText = `Message is not valid!`;
+            let validateText = `Article is not valid!`;
             validateMessage.html(validateText).fadeIn(1000);
         }
         if (title !== "") {
             validateTitle.fadeOut(1000);
         }
-        if (author !== "") {
-            validateAuthor.fadeOut(1000);
-        }
         if (message !== "") {
             validateMessage.fadeOut(1000);
         }
-        if (title !== "" && author !== "" && message !== "") {
+        if (title !== "" && message !== "") {
             let id = $(e.target).attr("articleId");
 
             $.ajax({
@@ -146,12 +128,10 @@ $(document).ready(() => {
                 url: '/article/edit/' + id,
                 data: {
                     title: title,
-                    author: author,
                     message: message
                 },
                 success: (article) => {
                     $('#title-p').val("");
-                    $('#author-p').val("");
                     $('#message-p').val("");
 
                     let validateText = `Article successfully updated!`;

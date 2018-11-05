@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="/style/main.css">
     <title>Node App</title>
 </head>
-
 <body class="bg-dark">
     <header id="main-header" class="header-container">
         <nav id="navbar" class="navbar navbar-dark navbar-expand-lg">
@@ -18,9 +16,8 @@
                     <span class="brand-b">Article</span> Store
                 </a>
                 <button type="button" id="btn-menu" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#menu-collapse" aria-hidden="false">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="menu-collapse">
                     <ul class="nav navbar-nav nav-pills ml-lg-5">
                         <li class="nav-item active active-nav">
@@ -28,7 +25,7 @@
                                 <span class="sr-only">(current)</span> Home
                             </a>
                         </li>
-                        <% if (user) {%>
+                        <% if (user) { %>
                             <li class="nav-item">
                                 <a href="/article/add" class="nav-link">
                                     Add article
@@ -43,42 +40,53 @@
                                     About
                                 </a>
                             </li>
-                            <%}%>
+                        <% } %>
                     </ul>
                     <ul class="nav navbar-nav ml-auto">
-                        <% if (user) {%>
+                        <% if (user) { %>
                             <li class="nav-item">
                                 <a href="/user/logout" class="nav-link">
                                     Logout
                                 </a>
                             </li>
-                            <%} else {%>
-                                <li class="nav-item">
-                                    <a href="/user/signup" class="nav-link">
-                                        Signup
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/login" class="nav-link">
-                                        Login
-                                    </a>
-                                </li>
-                                <%}%>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a href="/user/signup" class="nav-link">
+                                    Signup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/user/login" class="nav-link">
+                                    Login
+                                </a>
+                            </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <section id="section-jumbotron" class="jumbotron text-left bg-dark">
-            <div class="container mt-5">
-                <h1 class="display-4 text-light text-capitalize p-2"> Let's Store Your Articles & <br> Have Offers</h1>
-                <button id="btn-header" type="button" class="btn mt-2">LEARN MORE</button>
-            </div>
-        </section>
+        <div class="video-wrapper">
+            <% if (user) { %>
+                <video src="/videos/clip_2.mp4" autoplay="true" loop="true"></video>
+            <% } else { %>
+                <video src="/videos/clip_1.mp4" autoplay="true" loop="true"></video>
+            <% } %>
+        </div>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <% if (user) { %>
+                <h1 class="" id="header-heading">Feel Free to Store All Kind of Articles on Article Strore</h1>
+                <p id="header-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima incidunt unde esse excepturi quo illo suscipit fugit fugiat nemo.Lorem ipsum dolor sit amet </p>
+                <button id="btn-header" type="button" class="btn-lg btn-success">GET STARTED</button>
+            <% } else { %>
+                <h1 id="header-heading">Let's Store Your Articles <br> & Have Offers</h1>
+                <p id="header-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima incidunt unde esse excepturi quo illo suscipit fugit fugiat nemo.</p>
+                <button id="btn-header" type="button" class="btn-lg btn-danger">LEARN MORE</button>
+            <% } %>
+        </div>
     </header>
     <script src="/jquery/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/scripts/main.js"></script>
 </body>
-
 </html>

@@ -74,7 +74,7 @@
                     <%= message %>
                 </h1>
                 <div class="text-light"> <strong>Author : </strong>
-                    <%= article.author %>
+                    <%= user.name %>
                 </div>
                 <hr>
                 <div id="articles" class="container">
@@ -92,12 +92,12 @@
                                     Author:
                                 </strong>
                             <span class="">
-                                    <%= article.author %>
+                                    <%= user.name %>
                                 </span>
                         </li>
                         <li class="list-group-item text-light bg-dark">
                             <strong class="">
-                                    Message:
+                                    Article:
                                 </strong>
                             <span class="">
                                     <%= article.message %>

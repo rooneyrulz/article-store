@@ -79,7 +79,7 @@
                     <div class="col-lg-4 col-sm-6 col-xs-12">
                         <form id="form-search" class="form-inline mt-2">
                             <div class="form-group mb-0">
-                                <input id="search-author" type="text" class="form-control ml-sm-1 mt-1 border-0" placeholder="Search By Author.." required>
+                                <input id="search-title" type="text" class="form-control ml-sm-1 mt-1 border-0" placeholder="Search By Title.." required>
                             </div>
                             <button type="submit" class="btn btn-sm btn-success mt-1 ml-1">SEARCH</button>
                         </form>
@@ -102,12 +102,12 @@
                                     Author:
                                 </strong>
                                 <span class="">
-                                    <%= article.author %>
+                                    <%= user.name %>
                                 </span>
                             </li>
                             <li class="list-group-item text-light bg-dark">
                                 <strong class="">
-                                    Message:
+                                    Article:
                                 </strong>
                                 <span class="">
                                     <%= article.message %>

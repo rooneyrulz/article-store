@@ -11,8 +11,8 @@ let articleSchema = mongoose.Schema({
     },
 
     author: {
-        type: String,
-        require: [true, 'author is not valid!']
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
 
     message: {

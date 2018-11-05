@@ -8,8 +8,8 @@ const expressValidator = require('express-validator');
 const expressMessage = require('express-messages');
 const passport = require('passport');
 
-//Mongoose connection
-const Connection = require('./api/config/connect');
+//Require Mongoose Connection
+const DBConnection = require('./api/config/connect');
 
 const app = express();
 

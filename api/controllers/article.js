@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Article = require('../models/article_schema');
+const User = require('../models/user_schema');
 
 //Render Add Article
 exports.RenderAddArticle = (req, res, next) => {
@@ -9,14 +10,14 @@ exports.RenderAddArticle = (req, res, next) => {
 //Post articles
 exports.PostArticles = (req, res, next) => {
 
-    if (req.body.title === "" || req.body.author === "" || req.body.message === "") {
+    if (req.body.title === "" || req.body.message === "") {
         console.log(`empty fields found!`);
         res.status(404).render('server_error', { message: 'Not Found', error: 'Empty fields found...!' });
     } else {
         let article = new Article({
             _id: new mongoose.Types.ObjectId(),
             title: req.body.title,
-            author: req.body.author,
+            author: req.user,
             message: req.body.message
         })
         article
@@ -34,8 +35,8 @@ exports.PostArticles = (req, res, next) => {
 
 //Getting All Articles
 exports.RenderArticles = (req, res, next) => {
-    Article.find()
-        .select("title author message _id")
+    Article.find({author: req.user._id})
+        .select("title message _id")
         .exec()
         .then(articles => {
             if (articles.length < 1) {
@@ -78,7 +79,7 @@ exports.RenderEditArticle = (req, res, next) => {
     let articleId = req.params.id;
 
     Article.findById({ _id: articleId })
-        .select("title author message _id")
+        .select("title message _id")
         .exec()
         .then(article => {
             if (article.length < 1) {
@@ -98,9 +99,9 @@ exports.RenderEditArticle = (req, res, next) => {
 
 //Search Articles
 exports.SearchByAuthor = (req, res, next) => {
-    let articleAuthor = req.body.author;
-    Article.findOne({ author: articleAuthor })
-        .select("title author message _id")
+    let articleTitle = req.body.title;
+    Article.findOne({title: articleTitle})
+        .select("title message _id")
         .exec()
         .then(article => {
             if (article.length < 1) {
@@ -161,7 +162,7 @@ exports.PatchArticles = (req, res, next) => {
             } else {
                 let article = {
                     title: req.body.title,
-                    author: req.body.author,
+                    author: req.user._id,
                     message: req.body.message
                 };
                 Article.update({ _id: articleId }, { $set: article })
