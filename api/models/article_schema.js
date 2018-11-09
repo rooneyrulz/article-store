@@ -7,17 +7,19 @@ let articleSchema = mongoose.Schema({
 
     title: {
         type: String,
-        require: [true, 'title is not valid!']
+        require: [true, 'title is not valid!'],
+        lowercase: true
     },
 
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
     },
 
     message: {
         type: String,
-        require: [true, 'message is not valid!']
+        require: [true, 'message is not valid!'],
+        lowercase: true
     }
 });
 

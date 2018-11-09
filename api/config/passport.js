@@ -8,7 +8,7 @@ module.exports = (passport) => {
         User.findOne({ username: username }, (err, user) => {
             if (err) throw err;
             if (!user) {
-                return done(null, false, { message: 'User nto found!' });
+                return done(null, false, { message: 'User not found!' });
             }
 
             //Check for password
